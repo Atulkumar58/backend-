@@ -3,10 +3,12 @@ dns.setServers(["8.8.8.8"], ["1.1.1.1"])
 import mongoose from "mongoose";
 import {DB_NAME} from "../constants.js"
 
+console.log("DB_NAME", DB_NAME);
+console.log("MONGO_URI", process.env.MONGO_URI);
 const connectDB = async () => {
     try {
         console.log("Connecting to MongoDB...");
-        const connectionIns = await mongoose.connect(`mongodb+srv://atulchaudhary151_db_user:asdfghjk@cluster0.aqp1t04.mongodb.net/4`);
+        const connectionIns = await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`);
         console.log(`MongoDB connected: ${connectionIns.connection.host}`);
         console.log("connected to MongoDB successfully");
     }
