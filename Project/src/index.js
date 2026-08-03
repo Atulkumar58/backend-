@@ -1,6 +1,8 @@
 import connectDB from "./db/index.js";
-// import {DB_NAME} from "./constants.js"
 import dotenv from "dotenv/config";
+import app from "./app.js";
+
+// import {DB_NAME} from "./constants.js"
 // dotenv.config(path : "./env");
 
 // import mongoose from "mongoose";
@@ -15,6 +17,7 @@ connectDB()
 .catch((err) => {
     console.error("Error connecting to database:", err);
 });
+
 
 // import express from "express";
 // const app = express()
