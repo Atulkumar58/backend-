@@ -52,10 +52,14 @@ const userSchema = new mongoose.Schema({
 //Hooks are the middleware functions which are executed before or after certain events. 
 //In this case, we are using a pre-save hook to hash the password before saving 
 // the user document to the database.
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function() {
     if(this.isModified('password')) {
-        this.password = await bcrypt.hash(this.password, 1);
-        next();
+        try{
+            this.password = await bcrypt.hash(this.password, 1);
+        }
+        catch(error){
+            console.error("Error hashing password:", error);
+        }
     }
 });
 
